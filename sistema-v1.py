@@ -2,6 +2,11 @@
 
 #Esse primeiro arquivo cuidará das entradas e saídas e do controle do fluxo de caixa
 
+from datetime import datetime
+import locale
+import os
+locale.setlocale(locale.LC_TIME, "pt_BR.UTF-8")
+
 continuarRodando = False;
 
 #Estabelece a condição para o programa continuar sendo executado 
@@ -18,7 +23,7 @@ categorias = {
 
 def get_prazo_positivo():
     while True:
-        prazo = int(input("Primeiramente, insira o total de vendas realizadas à prazo: "))
+        prazo = int(input("Primeiramente, insira o total de vendas realizadas à prazo no mês atual: "))
         if prazo > 0:
             return prazo
         print("Desculpe, o valor precisa ser positivo. Tente novamente.")
@@ -66,6 +71,12 @@ print("Total das despesas fixas: ", despesasFixas)
 print("Total das despesas variáveis: ", despesasVariaveis)
 
 #armazena e mostra ao usuário o valor das despesas variáveis
+
+resultado_operacional = float((vendasPrazo + vendasVista) - (despesasFixas + despesasVariaveis))
+mes_atual = datetime.now().strftime("%B").capitalize()
+print(f"O resultado operacional no mês de {mes_atual} foi de R$ {resultado_operacional}")
+
+
 
 
 
